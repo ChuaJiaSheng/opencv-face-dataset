@@ -13,16 +13,19 @@ A Google Colab notebook that finds faces in existing images and saves rectangula
 5. Crop each detected rectangle from the original colour image.
 6. Save the crops with a person label and a running number.
 
-## Run in Colab
+## Reproduce in Google Colab
 
-1. Open [notebooks/prepare_face_dataset.ipynb](notebooks/prepare_face_dataset.ipynb) in Google Colab.
-2. Install the dependency if it is missing:
+**Prerequisites:** a Google account with Drive access, Google Colab, and a few JPG or PNG input images. The notebook expects Colab; a local Python installation does not provide `google.colab.drive`.
+
+1. Open Google Colab, choose **File → Open notebook → GitHub**, and enter `https://github.com/ChuaJiaSheng/opencv-face-dataset`. Select `notebooks/prepare_face_dataset.ipynb` and save a working copy.
+2. In Google Drive, create `MyDrive/face_dataset/input` and put your test images there. Use images containing a single person if all output files will carry that person's label.
+3. Add and run an initial dependency cell if OpenCV is missing:
 
    ```python
    %pip install opencv-python
    ```
 
-3. Set the three configuration values in the notebook:
+4. Set the configuration cell:
 
    ```python
    image_directory = "/content/gdrive/MyDrive/face_dataset/input"
@@ -30,10 +33,19 @@ A Google Colab notebook that finds faces in existing images and saves rectangula
    OUTPUT_DIR = "/content/gdrive/MyDrive/face_dataset/cropped/"
    ```
 
-4. Put your input images in the chosen Drive folder, run the cells in order, and approve the Drive mount for your own account.
-5. Inspect the resulting crops before using them in a dataset.
+5. Run the cells in order. Complete the Drive authorization when `drive.mount('/content/gdrive')` runs.
+6. Open the `cropped` folder in Drive and inspect the saved images.
 
-The notebook uses `google.colab.drive`. For local Python use, replace the Drive mount and Colab paths with local directories; installing OpenCV alone does not provide the Colab module.
+**Expected result:** each detected face is saved as a numbered JPG such as `person_01_0.jpg`; the notebook prints the saved path. An input with no detected face produces a no-detections message and no crop. Successful execution alone does not guarantee correct face detection.
+
+**Troubleshooting:** if the input directory is missing, check the Drive mount and exact path; if no images are found, check extensions and put files directly in `input`; if crops are wrong, use clearer frontal images and review detector parameters. Use a new output directory or label for a second run to avoid overwriting earlier crops.
+
+For a local copy of the notebook:
+
+```sh
+git clone https://github.com/ChuaJiaSheng/opencv-face-dataset.git
+cd opencv-face-dataset
+```
 
 ## Inputs and outputs
 
