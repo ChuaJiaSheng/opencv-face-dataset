@@ -55,7 +55,3 @@ The notebook uses `google.colab.drive`. For local Python use, replace the Drive 
 ## Limitations
 
 All faces found in a run receive the same `person_name`; the code does not identify which person appears in an image. Input ordering is not explicitly sorted, so filenames are not a stable identity mapping. The counter restarts at zero for each run and existing output names can be overwritten. Detection quality and crop correctness need manual review.
-
-## Provenance and verification
-
-Preserved from the supplied `mini_proj_face_catpure.ipynb` coursework source. The notebook JSON and code-cell syntax were checked, and outputs were cleared. Drive access, detection accuracy, and an end-to-end Colab run have not been verified here.
